@@ -1,6 +1,7 @@
 from app import app
 
 from utils.db import db
+from waitress import serve
 
 with app.app_context():
     db.init_app(app)
@@ -8,5 +9,5 @@ with app.app_context():
     print('creado')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+     serve(app, host='0.0.0.0', port=5000)
  
