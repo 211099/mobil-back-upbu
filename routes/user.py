@@ -49,8 +49,11 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             session['user_id'] = user.id
             encode_token = security.generate_token_user(user)
-            print(encode_token)
-            return jsonify({'message' : 'Logged in successfully.'})
+            response = {
+                'message': 'Logged in successfully.',
+                'encode_token': encode_token
+            }
+            return jsonify(response)
         else:
             return jsonify({'message' : 'Invalid email or password.'}), 401
     return jsonify({'message' : 'Invalid form data.'}), 400
