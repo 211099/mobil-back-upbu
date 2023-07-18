@@ -60,6 +60,7 @@ class security():
             encode_token = autorization.split(" ")[1]
 
             try:
+                print('aqui ando')
                 payload = jwt.decode(encode_token, cls.secret2, algorithms=["HS256"])
                 return True
             except (jwt.ExpiredSignatureError, jwt.InvalidSignatureError):

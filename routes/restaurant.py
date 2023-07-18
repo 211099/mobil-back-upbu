@@ -69,7 +69,7 @@ def login():
         user = Restaurants.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(user.password, form.password.data):
             session['user_id'] = user.id
-            encode_token = security.generate_token_user(user)
+            encode_token = security.generate_token_restaurant(user)
             response = {
                 'message': 'Logged in successfully.',
                 'encode_token': encode_token

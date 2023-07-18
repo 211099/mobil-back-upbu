@@ -21,6 +21,7 @@ def allowed_file(filename):
 
 def add_product():
     has_acces = security.verify_token_restaurant(request.headers)
+    print(has_acces)    
     if has_acces:
         name = request.form.get('name')
         description = request.form.get('description')
