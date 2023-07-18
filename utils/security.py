@@ -7,7 +7,7 @@ from decouple import config
 class security():
     tz = pytz.timezone('America/Mexico_City')
     secret1 = config('SECRET_1')
-    secret1 = config('SECRET_2')
+    secret2 = config('SECRET_2')
 
 
     @classmethod

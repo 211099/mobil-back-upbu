@@ -12,5 +12,6 @@ with app.app_context():
     print('creado')
 
 if __name__ == "__main__":
-     serve(app, host='0.0.0.0', port=os.getenv("PORT", default=5000))
+    app.run(debug=True)
+    #  serve(app, host='0.0.0.0', port=os.getenv("PORT", default=5000))
  
