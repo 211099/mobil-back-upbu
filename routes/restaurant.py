@@ -85,8 +85,6 @@ def login():
 def get_restaurant_orders(restaurant_id):
     has_acces = security.verify_token_restaurant(request.headers)
     if has_acces:
-        form = LoginForm(request.form)
-        if form.validate_on_submit():
             # Obtenemos todas las ordenes del restaurante
             orders = Orders.query.filter_by(restaurant_id=restaurant_id).options(joinedload(Orders.order_products)).all()
             if orders is None:
@@ -113,8 +111,6 @@ def get_restaurant_orders(restaurant_id):
                     'products': products
                 })
             return jsonify(orders_list)
-        else:
-            return jsonify({'message' : 'Invalid form data.'}), 400
     else:
         response = jsonify({'message':'Unauthorized'})
         return response, 401
