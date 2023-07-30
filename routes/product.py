@@ -95,8 +95,9 @@ def delete_product(id):
 # obtener por list
 @products.route("/restaurant/<restaurant_id>/products", methods=['GET'])
 def get_restaurant_products(restaurant_id):
-    has_acces = security.verify_token_restaurant(request.headers)
-    if has_acces: 
+    has_acces1 = security.verify_token_restaurant(request.headers)
+    has_acces2 = security.verify_token_user(request.headers)
+    if has_acces1 or has_acces2: 
         # Obtenemos todos los productos que coinciden con el restaurant_id especificado
         products = Products.query.filter_by(restaurant_id=restaurant_id).all()
 
