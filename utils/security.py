@@ -13,7 +13,7 @@ class security():
     @classmethod
     def generate_token_user(cls, authenticated_user):
         now = datetime.datetime.now(tz=cls.tz)
-        expiration = now + datetime.timedelta(minutes=15)
+        expiration = now + datetime.timedelta(hours=15)
         exp_unix = int(expiration.timestamp())  # Convertir a tiempo Unix
 
         payload = {
@@ -41,7 +41,7 @@ class security():
     @classmethod
     def generate_token_restaurant(cls, authenticated_restaurant):
         now = datetime.datetime.now(tz=cls.tz)
-        expiration = now + datetime.timedelta(minutes=15)
+        expiration = now + datetime.timedelta(hours=15)
         exp_unix = int(expiration.timestamp())  # Convertir a tiempo Unix
 
         payload = {

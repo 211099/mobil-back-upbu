@@ -118,7 +118,7 @@ def get_restaurant_orders(restaurant_id):
 #listar los restaurantes
 @restaurants.route("/api/restaurants/list", methods=['GET'])
 def get_all_restaurants():
-    has_acces = security.verify_token_restaurant(request.headers)
+    has_acces = security.verify_token_user(request.headers)
     if has_acces:
         all_restaurants = Restaurants.query.all()
         if not all_restaurants:
