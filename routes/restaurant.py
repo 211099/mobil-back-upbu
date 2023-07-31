@@ -66,13 +66,14 @@ def register_restaurant():
 def login():
     form = LoginForm(request.form)
     if form.validate_on_submit():
-        user = Restaurants.query.filter_by(email=form.email.data).first()
-        if user and check_password_hash(user.password, form.password.data):
-            session['user_id'] = user.id
-            encode_token = security.generate_token_restaurant(user)
+        restaurant = Restaurants.query.filter_by(email=form.email.data).first()
+        if restaurant and check_password_hash(restaurant.password, form.password.data):
+            session['user_id'] = restaurant.id
+            encode_token = security.generate_token_restaurant(restaurant)
             response = {
                 'message': 'Logged in successfully.',
-                'encode_token': encode_token
+                'encode_token': encode_token,
+                'restaurant': restaurant
             }
             return jsonify(response)
         else:
