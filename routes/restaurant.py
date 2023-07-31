@@ -68,12 +68,11 @@ def login():
     if form.validate_on_submit():
         restaurant = Restaurants.query.filter_by(email=form.email.data).first()
         if restaurant and check_password_hash(restaurant.password, form.password.data):
-            session['user_id'] = restaurant.id
             encode_token = security.generate_token_restaurant(restaurant)
             response = {
                 'message': 'Logged in successfully.',
                 'encode_token': encode_token,
-                'restaurant': restaurant
+                'restaurant': restaurant.id
             }
             return jsonify(response)
         else:
