@@ -51,7 +51,8 @@ def login():
             encode_token = security.generate_token_user(user)
             response = {
                 'message': 'Logged in successfully.',
-                'encode_token': encode_token
+                'encode_token': encode_token,
+                'user': user.id
             }
             return jsonify(response)
         else:
